@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "includes/shamir_secret.h"
 
 #define ARGS_QTY 5
 #define R "r"
@@ -25,10 +26,10 @@ int main( int argc, char *argv[] )  {
         char * directory = argv[4];
 
         if(strcmp(argv[1],D) == 0){
-            //encrypt(imageSecret,k,directory);
+            encrypt(imageSecret,k,directory);
         }
         else {
-            //decrypt(imageSecret,k,directory);
+            decrypt(imageSecret,k,directory);
         }
         
     } else if( argc > ARGS_QTY ) {

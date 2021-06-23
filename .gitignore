@@ -50,3 +50,10 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+**.bmp
+.vscode/
+images/
+out/
+**/.DS_Store
+sharesg19/

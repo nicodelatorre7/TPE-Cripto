@@ -37,11 +37,19 @@ typedef struct {
 } BMPImage;
 
 
-int read_image(FILE *fp, BMPImage *image, char * filename);
+typedef struct mat_representation {
+    uint8_t x_byte;
+    uint8_t w_byte;
+    uint8_t v_byte;
+    uint8_t u_byte;
+} mat_representation;
+
+
+int read_image(FILE *fp, BMPImage **image, char * filename);
 
 int fill_matrix_array(BMPImage *image, mat_representation ** mat_array, size_t * arr_size);
 
-int fill_body_from_matrix(BMPImage *image, uint8_t  ** body , mat_representation *mat_array, size_t arr_size);
+int fill_body_from_matrix(BMPImage *image, mat_representation *mat_array, size_t arr_size, uint8_t  ** body);
 
 
 #endif

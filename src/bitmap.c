@@ -3,7 +3,8 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <unistd.h>
-#include "bitmap.h"
+#include "includes/bitmap.h"
+#include "includes/utils.h"
 
 
 
@@ -81,7 +82,7 @@ int read_image(FILE *fp, BMPImage **image, char * filename){
 }
 
 
-int fill_body_from_matrix(BMPImage *image, uint8_t  ** body , mat_representation *mat_array, size_t arr_size){
+int fill_body_from_matrix(BMPImage *image , mat_representation *mat_array, size_t arr_size, uint8_t  ** body){
     int32_t image_width = image->info_header.width_px;
     int32_t image_height = image->info_header.height_px;
 
@@ -134,10 +135,10 @@ int fill_matrix_array(BMPImage *image, mat_representation ** mat_array, size_t *
         
         int offset = 0;
         while( squares > 0 ) {
-            (*matrix_array)[count].x_byte = body_matrix[rowA][offset];
-            (*matrix_array)[count].w_byte = body_matrix[rowA][offset+1];
-            (*matrix_array)[count].v_byte = body_matrix[rowB][offset];
-            (*matrix_array)[count].u_byte = body_matrix[rowB][offset+1];
+            (*mat_array)[count].x_byte = body_matrix[rowA][offset];
+            (*mat_array)[count].w_byte = body_matrix[rowA][offset+1];
+            (*mat_array)[count].v_byte = body_matrix[rowB][offset];
+            (*mat_array)[count].u_byte = body_matrix[rowB][offset+1];
 
             offset += 2;
             count++;

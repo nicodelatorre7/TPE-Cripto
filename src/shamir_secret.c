@@ -2,7 +2,8 @@
 #include <string.h>
 #include "includes/shamir_secret.h"
 #include "includes/math_helper.h"
-// El include de los bitmaps
+#include "includes/utils.h"
+#include "includes/bitmap.h"
 #include <dirent.h>
 
 /* 

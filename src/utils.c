@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <dirent.h>
 #include <string.h>
-#include "utils.h"
-#include "bitmap.h"
+#include "includes/utils.h"
+#include "includes/bitmap.h"
 
 
 int read_image_file(char * filename, BMPImage **image){

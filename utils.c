@@ -45,9 +45,8 @@ int read_images_directory(char * directory, BMPImage **images){
                 n++;
             }
         }
-        printf("LLEGO HASTA EL FINAL\n");
         closedir(d);
-        printf("%d\n",n);
+        //printf("%d\n",n);
         
     } else {
         return -1;
@@ -57,25 +56,22 @@ int read_images_directory(char * directory, BMPImage **images){
 }
 
 int write_image(BMPImage *image){
-    printf("file name > %s \n", image->filename);
+    //printf("file name > %s \n", image->filename);
     FILE *fp = fopen( image->filename , "wb" );
     if(fp == NULL) {
         printf("write_image: error opening file.\n");
         return -1;
     }
 
-    //print_image(image->body, image->info_header.width_px, image->info_header.height_px);
-
-    printf("offset> %d \n", image->header.data_offset);
-    printf("width> %d \n", image->info_header.width_px);
-    printf("height> %d \n", image->info_header.height_px);
+    //printf("offset> %d \n", image->header.data_offset);
+    //printf("width> %d \n", image->info_header.width_px);
+    //printf("height> %d \n", image->info_header.height_px);
 
     rewind(fp);
     int written = fwrite(&(image->header), 1, sizeof(image->header), fp);
-        printf("written : %d \n", written);
 
     written = fwrite(&(image->info_header), 1, sizeof(image->info_header), fp);
-    printf("written : %d \n", written);
+    //printf("written : %d \n", written);
 
 
     unsigned int untilOffsetl = image->header.data_offset - (sizeof(image->header) + sizeof(image->info_header) + 1 );
@@ -83,9 +79,9 @@ int write_image(BMPImage *image){
 	fwrite(image->until_offset,  1, untilOffsetl , fp);
 
     fseek(fp, image->header.data_offset, SEEK_SET);
-    printf("PIXELS SIZE: %d \n",image->info_header.width_px*image->info_header.height_px);
+    //printf("PIXELS SIZE: %d \n",image->info_header.width_px*image->info_header.height_px);
     written = fwrite(image->body, 1, image->info_header.width_px*image->info_header.height_px, fp);
-    printf("written : %d \n", written);
+    //printf("written : %d \n", written);
 
     fclose(fp);
     return 0;

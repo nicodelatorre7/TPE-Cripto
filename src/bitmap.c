@@ -25,30 +25,30 @@ int read_image(FILE *fp, BMPImage **image, char * filename){
     // header
     rewind(fp);
     int header_num_read = fread(&((*image)->header), 1, sizeof((*image)->header), fp);
-    printf("header_num_read: %d\n", header_num_read);
+    //printf("header_num_read: %d\n", header_num_read);
     if(header_num_read != sizeof((*image)->header)) {
         printf("Load_image: error reading bmp header.\n");
         return -1;
     }
     int header_info_num_read = fread(&((*image)->info_header), 1, sizeof((*image)->info_header), fp);
-    printf("header_info_num_read: %d\n", header_info_num_read);
+    //printf("header_info_num_read: %d\n", header_info_num_read);
     if(header_info_num_read != sizeof((*image)->info_header)) {
         printf("Load_image: error reading bmp info header.\n");
         return -1;
     }
 
-    printf("image offset: %u \n", (*image)->header.data_offset);
-    printf("image width: %u \n", (*image)->header.reserved);
-    printf("image width: %u \n", (*image)->info_header.width_px);
-    printf("image height: %u \n", (*image)->info_header.height_px);
+    //printf("image offset: %u \n", (*image)->header.data_offset);
+    //printf("image width: %u \n", (*image)->header.reserved);
+    //printf("image width: %u \n", (*image)->info_header.width_px);
+    //printf("image height: %u \n", (*image)->info_header.height_px);
     int32_t image_size = ((*image)->info_header.width_px)* ((*image)->info_header.height_px);
 
     int untilOffsetl = (*image)->header.data_offset - (sizeof((*image)->header) + sizeof((*image)->info_header));
-    printf("UNTIL NUMBER SIZE: %d\n", untilOffsetl);
+    //printf("UNTIL NUMBER SIZE: %d\n", untilOffsetl);
     (*image)->until_offset = malloc(sizeof(uint8_t) * untilOffsetl);
 
     int untilOffset_num_read = fread((*image)->until_offset, 1, untilOffsetl, fp);
-    printf("untilOffset_num_read: %d\n", untilOffset_num_read);
+    //printf("untilOffset_num_read: %d\n", untilOffset_num_read);
     if(untilOffset_num_read != untilOffsetl) {
         printf("Load_image: error reading data until offset.\n");
         return -1;
@@ -62,12 +62,12 @@ int read_image(FILE *fp, BMPImage **image, char * filename){
         return -1;
     }
 
-    printf("image size: %d\n", image_size);
-    printf("Body read:\n");
+    //printf("image size: %d\n", image_size);
+    //printf("Body read:\n");
 
     // Read image data
     int num_read = fread((*image)->body, 1, image_size, fp);
-    printf("num_read: %d\n", num_read);
+    //printf("num_read: %d\n", num_read);
     /*if (num_read != image_size){
         printf("Load_image: error reading image data\n");
         return -1;

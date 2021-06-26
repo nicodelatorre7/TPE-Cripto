@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "includes/shamir_secret.h"
+#include "includes/math_helper.h"
 
 #define ARGS_QTY 5
 #define R "r"
@@ -24,6 +25,8 @@ int main( int argc, char *argv[] )  {
 		}
 
         char * directory = argv[4];
+
+        matrix_initialization();
 
         if(strcmp(argv[1],D) == 0){
             encrypt(imageSecret,k,directory);

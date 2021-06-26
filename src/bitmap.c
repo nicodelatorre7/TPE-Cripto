@@ -16,12 +16,12 @@ int read_image(FILE *fp, BMPImage **image, char * filename){
         printf("LoadImageError: Malloc error.\n");
         return -1;
     }
-    printf("1: %s\n",filename);
-    printf("1: %d\n",strlen(filename));
+    //printf("1: %s\n",filename);
+    //printf("1: %d\n",strlen(filename));
     memset((*image)->filename, '\0', sizeof((*image)->filename));
     memcpy((*image)->filename,filename,strlen(filename));
     //strcpy((*image)->filename, filename);
-    printf("2: %s\n",(*image)->filename);
+    //printf("2: %s\n",(*image)->filename);
     
     // header
     rewind(fp);
@@ -67,7 +67,7 @@ int read_image(FILE *fp, BMPImage **image, char * filename){
     //printf("Body read:\n");
 
     // Read image data
-    int num_read = fread((*image)->body, 1, image_size, fp);
+    fread((*image)->body, 1, image_size, fp);
     //printf("num_read: %d\n", num_read);
     /*if (num_read != image_size){
         printf("Load_image: error reading image data\n");

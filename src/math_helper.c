@@ -122,13 +122,14 @@ static uint8_t helper(uint8_t a, uint8_t b) {
             a = (a << 1) ^ PRIMITIVE_GENERATIVE_POLYNOMIAL;}
          else
             a = a*2;
-            b >>= 1;
+        b >>= 1;
 	}
 	return rta;
 }
 
 static uint8_t get_polynom_degree(uint8_t p) {
-    p >>= 1;    uint8_t rta = 0;
+    p >>= 1;    
+    uint8_t rta = 0;
     while (p != 0) {
         rta++;p>>=1;
         }

@@ -30,7 +30,6 @@ int read_images_directory(char * directory, BMPImage **images){
             if (strstr(dir->d_name, ".bmp") != 0){
                 char file[512];
                 sprintf(file, "%s/%s",directory,dir->d_name);
-                printf("%s \n", file);
                 FILE *fp = fopen( file , "r" );
                 if(fp == NULL) {
                     printf("ReadImagesDirectoryError: Error opening file.");
@@ -68,9 +67,8 @@ int write_image(BMPImage *image){
     //printf("height> %d \n", image->info_header.height_px);
 
     rewind(fp);
-    int written = fwrite(&(image->header), 1, sizeof(image->header), fp);
-
-    written = fwrite(&(image->info_header), 1, sizeof(image->info_header), fp);
+    fwrite(&(image->header), 1, sizeof(image->header), fp);
+    fwrite(&(image->info_header), 1, sizeof(image->info_header), fp);
     //printf("written : %d \n", written);
 
 
@@ -80,7 +78,7 @@ int write_image(BMPImage *image){
 
     fseek(fp, image->header.data_offset, SEEK_SET);
     //printf("PIXELS SIZE: %d \n",image->info_header.width_px*image->info_header.height_px);
-    written = fwrite(image->body, 1, image->info_header.width_px*image->info_header.height_px, fp);
+    fwrite(image->body, 1, image->info_header.width_px*image->info_header.height_px, fp);
     //printf("written : %d \n", written);
 
     fclose(fp);

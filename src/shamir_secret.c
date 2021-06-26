@@ -256,8 +256,6 @@ int decrypt(char * filename, uint8_t k, char * directory){
         image_counter = 0;
         for(size_t img = 0; (image_counter < k) && (img < n); img++){  
             uint8_t bits[8] = {0};
-            uint8_t reader = 0;
-            uint8_t p = 0;
             get_all_bits(all_images_matrix[img][i],bits,x,y,&image_counter);
         }
 
@@ -285,7 +283,7 @@ int decrypt(char * filename, uint8_t k, char * directory){
     size_t len = strlen(filename);
     memcpy(new_image.filename, filename, len);
     new_image.filename[len] = '\0';
-    int written = write_image(&new_image);
+    write_image(&new_image);
     free_all_images(all_images, n);
 
     return r; 

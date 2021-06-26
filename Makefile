@@ -7,4 +7,4 @@ valgrind:
 	gcc -o ss -g -pedantic -Wall  -fsanitize=address src/*.c
 
 clean:
-	 rm out
+	rm -rf ss *.o *.dSYM
